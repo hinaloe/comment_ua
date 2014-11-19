@@ -10,6 +10,8 @@ Author URI: http://hinaloe.net/
 License: GPL
 */
 
+comment_ua::init();
+
 class comment_ua {
     static $ins;
     private function __construct()
@@ -23,9 +25,9 @@ class comment_ua {
         add_action('manage_comments_custom_column',array($this,'comment_ua_column'),10,2);
     }
 
-    public function init(){
-        if (!empty($this::ins)) {
-            $this::ins = new $this;
+    public static  function init(){
+        if (!empty(self::$ins)) {
+            self::$ins = new self;
         }
     }
 
