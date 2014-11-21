@@ -29,7 +29,7 @@ class comment_ua {
      */
     private function __construct()
     {
-        add_action('admin_init',array($this,'hooks'));
+        add_action('load-edit-comments.php',array($this,'hooks'));
         add_action('load-edit-comments.php',array($this,'load_styles'));
     }
 
