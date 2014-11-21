@@ -10,22 +10,42 @@ Author URI: http://hinaloe.net/
 License: GPL
 */
 
+
+
 comment_ua::init();
 
+/**
+ * Class comment_ua
+ */
 class comment_ua {
+    /**
+     * @var comment_ua
+     */
     static $ins;
+
+
+    /**
+     * Constructor
+     */
     private function __construct()
     {
         add_action('admin_init',array($this,'hooks'));
         add_action('load-edit-comments.php',array($this,'load_styles'));
     }
 
+    /**
+     * Add Action or Filter hooks for plugin.
+     */
     public function hooks()
     {
         add_filter('comment_row_actions',array($this,'comment_ua_columns'),10,2);
-        add_action('manage_comments_custom_column',array($this,'comment_ua_column'),10,2);
+//        add_action('manage_comments_custom_column',array($this,'comment_ua_column'),10,2);
     }
 
+
+    /**
+     * Initialize plugin.
+     */
     public static  function init(){
         if (empty(self::$ins)) {
             self::$ins = new self;
@@ -48,24 +68,28 @@ class comment_ua {
 
     }
 
+//    /**
+//     * @param string $column
+//     * @param string $post_id
+//     */
+//    public function comment_ua_column ($column, $post_id)
+//    {
+//        echo $column;
+//        switch($column) {
+//            case "author":
+//                //@todo do something
+//                $comment = get_comment($post_id);
+//                echo $comment->comment_agent;
+//                echo "Test!";
+//                break;
+//        }
+//
+//    }
+
     /**
-     * @param string $column
-     * @param string $post_id
+     * Add stylesheet
+     *
      */
-    public function comment_ua_column ($column, $post_id)
-    {
-        echo $column;
-        switch($column) {
-            case "author":
-                //@todo do something
-                $comment = get_comment($post_id);
-                echo $comment->comment_agent;
-                echo "Test!";
-                break;
-        }
-
-    }
-
     public function load_styles()
     {
         add_action('admin_head',function()
