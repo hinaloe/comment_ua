@@ -62,7 +62,10 @@ class comment_ua {
     {
         //@todo
         if($comment->comment_agent)
-        echo sprintf('<span class="comment-ua comment-ua-'.$comment->comment_ID.'">%s</span>',$comment->comment_agent);
+        echo sprintf(
+          '<span class="comment-ua comment-ua-'.$comment->comment_ID.'">%s</span>',
+          esc_html ( $comment->comment_agent )
+        ) ;
 
         return $a;
 
